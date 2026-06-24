@@ -4,6 +4,7 @@ import '../../data/datasourse/weather_datasourse.dart';
 import '../../data/datasourse/weather_remote_datasourse.dart';
 import '../../data/repositories/weather_repository_impl.dart';
 import '../../domain/repositories/weather_domain_repository.dart';
+import '../../domain/usecase/weather_usecase.dart';
 import '../network/dio_client.dart';
 
 var locator = GetIt.instance;
@@ -20,5 +21,10 @@ Future<void> setupLocator() async {
   // reposiroey
   locator.registerFactory<WeatherRepository>(
     () => WeatherRepositoryImpl(locator.get()),
+  );
+
+  // use cases
+  locator.registerFactory<WeatherUsecase>(
+    () => WeatherUsecase(locator.get()),
   );
 }
